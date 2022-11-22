@@ -47,8 +47,7 @@ jobs:
       with:
         context: ./api
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        tags: ${{secrets.DOCKER_AUTH_USERNAME}}/monapi:${{github.sha}} 
         file: ./api/Dockerfile
 
 
