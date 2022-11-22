@@ -57,7 +57,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: ./api/Dockerfile
+          file: ./api/Dockerfile.bis
 
 
 
