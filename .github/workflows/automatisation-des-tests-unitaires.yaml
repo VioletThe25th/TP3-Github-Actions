@@ -21,7 +21,8 @@ jobs:
       with:
         node-version: 16.X
     - name: Install dependencies
-      run: yarn
+      run: npm install
+    - run: yarn
     - run: yarn test
     - run: yarn build
 
