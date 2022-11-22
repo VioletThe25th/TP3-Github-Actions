@@ -28,9 +28,6 @@ jobs:
   build-push-action:
     name: Build and push docker images
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./api
     steps: 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -60,6 +57,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          file: ./api
 
 
 
