@@ -33,7 +33,6 @@ jobs:
       with:
         node-version: 16.X
         cache: 'yarn'
-        cache-dependency-path: 'TP3-GITHUB-ACTION/package-lock.json'
 
     - name: Install dependencies
       run: yarn install
