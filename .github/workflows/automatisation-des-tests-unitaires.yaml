@@ -7,12 +7,9 @@ on:
     branches: [ main ]
 
 env:
-  # MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
-  # MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
-  # MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
-  MONGO_INITDB_ROOT_USERNAME: root
-  MONGO_INITDB_ROOT_PASSWORD: toto
-  MONGODB_URI: "mongodb://root:toto@localhost:27017"
+  MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
+  MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+  MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
 
 
 jobs:
@@ -23,14 +20,10 @@ jobs:
     defaults:
       run:
         working-directory: ./api
-    services:
 
+    services:
       mongo:
         image: mongo 
-        # env:
-          # MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
-          # MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
-          # MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
         ports:
           - 27017:27017 
     steps:
@@ -39,6 +32,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16.X
+
+    - name: Cache yarn Install
+      uses: actions/cache@v3
+      with: 
+        path: node_modules
+        key: ${{runner.os}}-modules
 
     - name: Install dependencies
       run: yarn install
