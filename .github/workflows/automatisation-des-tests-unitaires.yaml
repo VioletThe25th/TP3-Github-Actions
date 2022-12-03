@@ -39,8 +39,8 @@ jobs:
     - name: cache yarn
       uses: actions/cache@v3
       with:
-        path: node_modules
-        key: 'yarn'
+        path: ./api
+        key: 'node_modules'
 
     - name: Install dependencies
       run: yarn install
