@@ -27,8 +27,6 @@ jobs:
           MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
           MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
           MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
-        volumes:
-          - db:/data/db 
         ports:
           - 27017:27017 
     steps:
