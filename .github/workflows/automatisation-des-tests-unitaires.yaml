@@ -35,9 +35,11 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: '**/package-lock.json'
 
-    - uses: action/cache@v3
+    - name: cache yarn
+      uses: action/cache@v3
       with:
         path: node_modules
+        key: ${{runner.os}}-modules
 
     - name: Install dependencies
       run: yarn install
