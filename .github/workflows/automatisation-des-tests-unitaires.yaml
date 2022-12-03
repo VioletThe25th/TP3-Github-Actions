@@ -12,10 +12,9 @@ env:
   MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
 
 jobs:
-
-  build-and-test:
-    name: Run unit tests
+  container-job:
     runs-on: ubuntu-latest
+    container: node:10.18-jessie
     defaults:
       run:
         working-directory: ./api
@@ -29,8 +28,6 @@ jobs:
           MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
         volumes:
           - db:/data/db 
-        ports:
-          - 27017:27017 
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js 16
@@ -66,7 +63,7 @@ jobs:
         push: true
         tags: ${{secrets.DOCKER_AUTH_USERNAME}}/monapi:${{github.sha}} 
         file: ./api/Dockerfile
-  
+
 
 
 
