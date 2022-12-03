@@ -33,7 +33,7 @@ jobs:
       with:
         node-version: 16.X
         cache: 'yarn'
-        cache-dependency-path: '/home/runner/.cache/yarn/v6'
+        cache-dependency-path: '../home/runner/.cache/yarn/v6'
 
 
     - name: Install dependencies
