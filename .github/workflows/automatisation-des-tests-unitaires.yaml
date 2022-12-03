@@ -12,9 +12,10 @@ env:
   MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
 
 jobs:
-  container-job:
+
+  build-and-test:
+    name: Run unit tests
     runs-on: ubuntu-latest
-    container: node:10.18-jessie
     defaults:
       run:
         working-directory: ./api
@@ -57,6 +58,8 @@ jobs:
       with:
         mongodb-version: 6
     - run:  yarn test:e2e
+      env: 
+        ports: 27017
 
     - name: Build and push Docker image
       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -65,7 +68,7 @@ jobs:
         push: true
         tags: ${{secrets.DOCKER_AUTH_USERNAME}}/monapi:${{github.sha}} 
         file: ./api/Dockerfile
-
+  
 
 
 
