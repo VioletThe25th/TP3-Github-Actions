@@ -46,7 +46,7 @@ jobs:
     - name: Connect to MONGODB
       uses: supercharge/mongodb-github-action@1.8.0
       with:
-        mongodb-version: 16
+        mongodb-version: 6
     - run:  yarn test:e2e
       env:
         MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
