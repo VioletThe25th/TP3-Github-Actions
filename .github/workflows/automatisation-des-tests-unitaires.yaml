@@ -45,12 +45,16 @@ jobs:
 
     - name: Start MongoDB
       uses: supercharge/mongodb-github-action@1.7.0
-    - run: node.client.js
+    # - run: node.client.js
+      # env: 
+      #   MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
+      #   MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+      #   MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
+    - run: yarn test:e2e
       env: 
         MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
         MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
         MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
-    - run: yarn test:e2e
 
 
     - name: Set up Docker Buildx
