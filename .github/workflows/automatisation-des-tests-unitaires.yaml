@@ -37,6 +37,7 @@ jobs:
       uses: actions/cache@v3
       with: 
         path: node_modules
+        key: ${{runner.os}}-docker
 
     - name: Install dependencies
       run: yarn install
