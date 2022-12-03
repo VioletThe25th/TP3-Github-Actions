@@ -58,10 +58,6 @@ jobs:
       with:
         mongodb-version: 6
     - run:  yarn test:e2e
-      env:
-        mongodb-username: ${MONGODB_USERNAME} 
-        mongodb-password: ${MONGODB_PASSWORD}
-        mongodb-db: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
 
     - name: Build and push Docker image
       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
