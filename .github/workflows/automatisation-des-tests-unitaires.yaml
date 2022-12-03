@@ -19,6 +19,18 @@ jobs:
     defaults:
       run:
         working-directory: ./api
+    services:
+
+      mongo:
+        image: mongo 
+        env:
+          MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME} 
+          MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+          MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
+        volumes:
+          - db:/data/db 
+        ports:
+          - 27017:27017 
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js 16
@@ -48,22 +60,9 @@ jobs:
         push: true
         tags: ${{secrets.DOCKER_AUTH_USERNAME}}/monapi:${{github.sha}} 
         file: ./api/Dockerfile
-
-    # services:
-    #   # Conteneur MongoDB
-    #   mongo:
-    #     image: mongo # Correspond à l'image mongo du DockerHub : https://hub.docker.com/_/mongo
-    #     volumes:
-    #       - db:/data/db # Les données des bases de données de MongoDB sont stockées dans le répertoire /data/db. Il faut donc monter un volume sur cet emplacement. 
-    #     ports:
-    #       - 27017:27017 # On expose le port de MongoDB afin de le rendre accessible depuis l'host. Cela permettra de s'y connecter avec un client lourd comme Compass.
-      
-    #   api: # API NodeJS
-    #     image: violetgrace/monapi:latest # Image qui a été précédemment construite
-    #     ports:
-    #       - 3000:3000 # On expose le port 3000 qui correspond au port de l'API afin de la rendre accessible depuis l'host.
-
-
+        
+    - run:  node.client.js
+  
 
 
 
