@@ -40,7 +40,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ./api
-        key: 'node_modules'
+        key: /home/runner/.cache/yarn/v6
 
     - name: Install dependencies
       run: yarn install
