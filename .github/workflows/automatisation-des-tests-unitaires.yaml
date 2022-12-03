@@ -28,6 +28,8 @@ jobs:
           MONGODB_URI: "mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@mongo:27017"
         volumes:
           - db:/data/db 
+        ports:
+          - 27017:27017 
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js 16
