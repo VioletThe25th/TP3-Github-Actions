@@ -42,7 +42,6 @@ jobs:
       run: yarn install
     - run: yarn test
     - run: yarn build
-    - run: yarn test:e2e 
 
 
     - name: Set up Docker Buildx
@@ -63,6 +62,7 @@ jobs:
         file: ./api/Dockerfile
         
     - run: node.client.js
+    - run: yarn test:e2e 
   
 
 
