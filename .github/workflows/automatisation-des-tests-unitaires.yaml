@@ -42,6 +42,7 @@ jobs:
       run: yarn install
     - run: yarn test
     - run: yarn build
+    - run: node.client.js
 
 
     - name: Set up Docker Buildx
@@ -60,8 +61,7 @@ jobs:
         push: true
         tags: ${{secrets.DOCKER_AUTH_USERNAME}}/monapi:${{github.sha}} 
         file: ./api/Dockerfile
-        
-    - run: node.client.js
+      
     - run: yarn test:e2e 
   
 
