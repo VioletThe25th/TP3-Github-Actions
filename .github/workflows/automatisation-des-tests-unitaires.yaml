@@ -61,7 +61,8 @@ jobs:
         tags: ${{secrets.DOCKER_AUTH_USERNAME}}/monapi:${{github.sha}} 
         file: ./api/Dockerfile
         
-    - run:  node.client.js
+    - run: node.client.js
+    - run: yarn test:e2e 
   
 
 
