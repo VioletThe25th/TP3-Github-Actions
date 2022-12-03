@@ -34,12 +34,13 @@ jobs:
         node-version: 16.X
         cache: 'yarn'
         cache-dependency-path: '**/package-lock.json'
+        
 
     - name: cache yarn
       uses: actions/cache@v3
       with:
         path: node_modules
-        key: ${{runner.os}}-modules
+        key: 'yarn'
 
     - name: Install dependencies
       run: yarn install
